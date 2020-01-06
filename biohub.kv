@@ -1,0 +1,241 @@
+WindowManager:
+	HomeScreen:
+	codingSequences:
+	orfFinding:
+
+<HomeScreen>:
+	name: "home"
+
+	AsyncImage:
+		source: "src/background.png"
+		size_hint: 1, 1
+
+	Button:
+		pos_hint: {"top": 1}
+		size_hint: 1, 0.1
+		background_color: 1, 1, 1, 1
+
+	Button:
+		pos_hint: {'bottom': 1}
+		size_hint: 1, 0.1
+		text:
+			"BioHub Version 0.0"
+
+	Button:
+		size_hint: 0.1, 0.1
+		pos_hint: {"x": 0.90}
+		text: "Credits"
+		on_release: app.creditsBtn()
+
+	Button:
+		pos_hint: {"top": 1, "right": 1}
+		size_hint: 0.3, 0.1
+		text: "Sequence Transformation"
+		on_release:
+			app.root.current = "cdsTrans"
+			root.manager.transition.direction = "left"
+
+	Button:
+		pos_hint: {"top": 1, "right": .7}
+		size_hint: 0.3, 0.1
+		text: "Orf Finder"
+		on_release:
+			app.root.current = "orfFinding"
+			root.manager.transition.direction = "left"
+
+	Button:
+		pos_hint: {"top": 1, "left": 1}
+		text: "Home"
+		size_hint: 0.1, 0.1
+
+		
+
+
+
+
+<codingSequences>:
+	name: "cdsTrans"	
+
+	aminoacidSeq: aminoacidSeq
+	cdsSeq: cdsSeq
+	rnaSeq: rnaSeq
+
+	AsyncImage:
+		source: "src/background.png"
+		size_hint: 1, 1
+
+	Button:
+		pos_hint: {"top": 1}
+		size_hint: 1, 0.1
+		background_color: 1, 1, 1, 1
+
+	Button:
+		pos_hint: {'bottom': 1}
+		size_hint: 1, 0.1
+		text:
+			"BioHub Version 0.0"
+
+	Button:
+		pos_hint: {"top": 1, "left": 1}
+		text: "Home"
+		size_hint: 0.1, 0.1
+		on_release:
+			app.root.current = "home"
+			root.manager.transition.direction = "right"
+
+
+	Button:
+		size_hint: 0.1, 0.1
+		pos_hint: {"x": 0.90}
+		text: "Credits"
+		on_release: app.creditsBtn()
+
+	Label:
+		pos_hint: {"top": .7, "right": 0.15}
+		font_size: 12
+		size_hint: 0.1, 0.1
+		text: 'Coding Sequence'
+	TextInput:
+		pos_hint: {"top": .7, "right": 0.8}
+		size_hint: 0.6, 0.1
+		id: cdsSeq
+		multiline: False
+	Button:
+		pos_hint: {"top": .7, "right": .9}
+		text: "To Aminoacid"
+		font_size: 12
+		size_hint: 0.1, 0.1
+		on_release: root.cdsTranslation()
+	Button:
+		pos_hint: {"top": .7, "right": 1}
+		text: "To mRNA"
+		font_size: 12
+		size_hint: 0.1, 0.1
+		on_release: root.dnaRna() 
+
+
+
+	Label:
+		font_size: 12
+		pos_hint: {"top": 0.6, "right": 0.15}
+		size_hint: 0.1, 0.1
+		text: "Aminoacid Sequence"
+	TextInput:
+		pos_hint: {"top": 0.6, "right": 0.8}
+		size_hint: 0.6, 0.1
+		id: aminoacidSeq
+		multiline: False
+	Button:
+		pos_hint: {"top": 0.6, "right": 1}
+		text: "Reverse Translate"
+		font_size: 12
+		size_hint: 0.2, 0.1
+		on_release: root.reverseTranslation()
+
+	Label:
+		font_size: 12
+		pos_hint: {"top": 0.5, "right": 0.15}
+		size_hint: 0.1, 0.1
+		text: "mRNA Sequence"
+	TextInput:
+		pos_hint: {"top": 0.5, "right": 0.8}
+		size_hint: 0.6, 0.1
+		id: rnaSeq
+		multiline: False
+	Button:
+		pos_hint: {"top": 0.5, "right": 1}
+		text: "To DNA"
+		font_size: 12
+		size_hint: 0.2, 0.1
+		on_release: root.rnaDna()
+
+	Button:
+		pos_hint: {"top": 0.4, "right": 1}
+		text: "Clear"
+		font_size: 12
+		size_hint: 0.2, 0.1
+		on_release: root.clearAll()	
+
+<orfFinding>:
+	name: "orfFinding"
+	findOrfs: findOrfs
+	selectedOrf: selectedOrf
+
+	AsyncImage:
+		source: "src/background.png"
+		size_hint: 1, 1
+
+	Button:
+		pos_hint: {"top": 1}
+		size_hint: 1, 0.1
+		background_color: 1, 1, 1, 1
+
+	Button:
+		pos_hint: {'bottom': 1}
+		size_hint: 1, 0.1
+		text:
+			"BioHub Version 0.0"
+
+	Button:
+		pos_hint: {"top": 1, "left": 1}
+		text: "Home"
+		size_hint: 0.1, 0.1
+		on_release:
+			app.root.current = "home"
+			root.manager.transition.direction = "right"
+
+	Button:
+		size_hint: 0.1, 0.1
+		pos_hint: {"x": 0.90}
+		text: "Credits"
+		on_release: app.creditsBtn()
+
+	Label:
+		font_size: 16
+		pos_hint: {"top": 0.9, "right": 0.3}
+		size_hint: 0.1, 0.1
+		text: "ORF Finder"
+
+	TextInput:
+		pos_hint: {"top": .83, "right": 0.8}
+		size_hint: 0.6, 0.3
+		id: findOrfs
+		multiline: True
+
+	Button:
+		size_hint: 0.1, 0.1
+		pos_hint: {"top": .63, "x": 0.8}
+		text: "Find Orfs"
+		on_release: root.findOrf()
+
+	Label:
+		font_size: 16
+		pos_hint: {"top": 0.56, "right": 0.312}
+		size_hint: 0.1, 0.1
+		text: "Selected ORF"
+
+	TextInput:
+		pos_hint: {"top": 0.49, "right": 0.8}
+		size_hint: 0.6, 0.2
+		id: selectedOrf
+		multiline: True
+
+	
+
+
+
+
+
+<Credits>:
+	Label:
+		text: "BioHub Version 0.0"
+		font_size: 14
+		pos_hint: {"x": 0, "y": .35}
+	Label:
+		font_size: 14
+		text: "Created by Denis Moura"
+		pos_hint: {"x": 0, "y": .20}
+	Label:
+		font_size: 14
+		text: "drmouradap@gmail.com"
+		pos_hint: {"x": 0, "y": .1}
